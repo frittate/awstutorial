@@ -13,6 +13,7 @@ import {
 import config from '../config.js';
 import './Login.css';
 import { withRouter } from 'react-router-dom';
+import LoaderButton from '../components/LoaderButton';
 
 class Login extends Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class Login extends Component {
       this.props.history.push('/');
     }
     catch(e) {
-      alert(e);
+       this.props.history.push('/NotFound');
       this.setState({ isLoading: false });
     }
   }
@@ -92,13 +93,14 @@ class Login extends Component {
               onChange={this.handleChange}
               type="password" />
           </FormGroup>
-          <Button
+            <LoaderButton
             block
             bsSize="large"
             disabled={ ! this.validateForm() }
-            type="submit">
-            Login
-          </Button>
+            type="submit"
+            isLoading={this.state.isLoading}
+            text="Login"
+            loadingText="Logging in…" />
         </form>
       </div>
     );
