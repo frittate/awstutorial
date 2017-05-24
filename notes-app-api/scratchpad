@@ -1,0 +1,25 @@
+aws cognito-idp sign-up \
+  --region us-west-2 \
+  --client-id 7q8m90ff2a6bt1h0994ctgb0sj \
+  --username user2@example.com \
+  --password Passw0rd! \
+  --user-attributes Name=email,Value=admin@example.com
+
+
+aws cognito-idp admin-confirm-sign-up \
+  --region us-west-2 \
+  --user-pool-id us-west-2_rpAJdjLR5 \
+  --username user2@example.com
+
+  aws cognito-idp admin-initiate-auth \
+  --region us-west-2 \
+  --user-pool-id us-west-2_rpAJdjLR5 \
+  --client-id 7q8m90ff2a6bt1h0994ctgb0sj \
+  --auth-flow ADMIN_NO_SRP_AUTH \
+  --auth-parameters USERNAME=user2@example.com,PASSWORD=Passw0rd!
+
+  curl https://y41nezzjc9.execute-api.us-west-2.amazonaws.com/prod/notes \
+  -H "Authorization:eyJraWQiOiJKUEQrNk9MTEdrQTF2WktcL0xJc1NFME1xWXRJdEpEM0dJV2pNZ1RSODZjVT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI0OWNhYzJjZS05NmM4LTRjNWEtOTEwOS1jYjA2OWEzZTUyOWEiLCJhdWQiOiI3cThtOTBmZjJhNmJ0MWgwOTk0Y3RnYjBzaiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE0OTUxMTk5MTksImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy13ZXN0LTIuYW1hem9uYXdzLmNvbVwvdXMtd2VzdC0yX3JwQUpkakxSNSIsImNvZ25pdG86dXNlcm5hbWUiOiJ1c2VyMkBleGFtcGxlLmNvbSIsImV4cCI6MTQ5NTEyMzUxOSwiaWF0IjoxNDk1MTE5OTE5LCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIn0.a3KXnRgKVDucxu4m6vWJu1s-Uz1Mn6z5QKytdE2k76suJ2CctHm_6daQKceXWZcIqlK6xkw9md65PztVKCLf67dK7Sn_E-tu4hh3PaqC7pd5GPkSp6M66zuk4bYu6175T8WN3j_dyHAVh2lb68ZJyRxxcc-3YOdmcTtAvwMPu1lf84HzSX7iOKSGD1oYVKVZj3j2Geo3m5Vpj-TNdTVWJFn2BvdIV0v8awFw8k7dV2QcVSyNJzp4mwk8A1N2GXIeD92_CqbO7-YrjrSAGwRmZ84zwMzDUYrRnTtyzNVIxsvqYcVsm5MSEwlg10QV93xByV1tJipru5_Ly5qHJePfQA" \
+  -d "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}" \
+  -v
+
