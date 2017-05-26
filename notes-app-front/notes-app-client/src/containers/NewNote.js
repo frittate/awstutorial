@@ -71,7 +71,7 @@ createNote(note) {
       render() {
     return (
       <div className="NewNote">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} method="POST">
           <FormGroup controlId="content">
             <FormControl
               onChange={this.handleChange}
