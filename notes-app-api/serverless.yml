@@ -10,8 +10,9 @@
   "plugins": [
     "serverless-webpack"
   ],
-  "custom": null,
-  "webpackIncludeModules": true,
+  "custom": {
+    "webpackIncludeModules": true
+  },
   "functions": {
     "hello": {
       "handler": "handler.hello"
@@ -70,7 +71,7 @@
             "method": "put",
             "cors": true,
             "authorizer": {
-              "arn": "arn:aws:cognito-idp:us-west-2:491494138572:userpool/us-west-2_rpAJdjLR5"
+              "arn": "arn:aws:cognito-idp:us-west-2:491494138572:userpool/us-west-2_rpAJdjLR"
             }
           }
         }
